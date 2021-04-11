@@ -66,8 +66,6 @@ export default class MapboxValhallaControl implements IControl {
       }
 
       this.controlContainer = document.createElement('div');
-      // this.controlContainer.classList.add('mapboxgl-ctrl');
-      // this.controlContainer.classList.add('mapboxgl-ctrl-group');
 
       this.timeIsochroneControl = new TimeIsochroneControl(
         this.map,
