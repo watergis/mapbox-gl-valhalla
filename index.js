@@ -3,6 +3,7 @@ import { MapboxValhallaControl } from '../lib/index';
 import '../css/styles.css';
 
 (()=>{
+  const VALHALLA_API = process.env.VALHALLA_API;
     // mapboxgl.accessToken='your mapbox access token'
     const map = new mapboxgl.Map({
         container: 'map',
@@ -14,7 +15,7 @@ import '../css/styles.css';
     });
     map.addControl(new mapboxgl.NavigationControl(), 'top-right');
     map.addControl(new MapboxValhallaControl(
-      process.env.VALHALLA_API,
+      VALHALLA_API,
       {
         Contours: [
           {
