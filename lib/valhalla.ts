@@ -64,19 +64,14 @@ export default class Valhalla {
     }
   }
 
-  getIsochrone(
-    lon: number,
-    lat: number,
-    contourType: string,
-    costing?: string,
-  ) : Promise<string | undefined> {
-    if (this.contourLayers.length > 0) {
+  clearFeatures() {
+    if (this.contourLayers && this.contourLayers.length > 0) {
       this.contourLayers.forEach((id) => {
         this.map?.removeLayer(id);
       });
       this.contourLayers = [];
     }
-    if (this.contourSources.length > 0) {
+    if (this.contourSources && this.contourSources.length > 0) {
       this.contourSources.forEach((id) => {
         this.map?.removeSource(id);
       });
@@ -86,6 +81,15 @@ export default class Valhalla {
       this.contourMaker.remove();
       this.contourMaker = undefined;
     }
+  }
+
+  getIsochrone(
+    lon: number,
+    lat: number,
+    contourType: string,
+    costing?: string,
+  ) : Promise<string | undefined> {
+    this.clearFeatures();
     const contourList = JSON.parse(JSON.stringify(this.contours));
     contourList.forEach((c) => {
       if (contourType === ContourType.Time) {

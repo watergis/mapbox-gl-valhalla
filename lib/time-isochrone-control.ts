@@ -63,9 +63,17 @@ export default class TimeIsochroneControl {
       table.appendChild(tr3);
     }
 
+    const clearButton = document.createElement('button');
+    clearButton.textContent = 'Clear';
+    clearButton.classList.add('mapbox-valhalla-control-button');
+    clearButton.addEventListener('click', () => {
+      this.valhalla.clearFeatures();
+    });
+    this.mainContainer.appendChild(clearButton);
+
     const calcButton = document.createElement('button');
     calcButton.textContent = 'Calculate';
-    calcButton.classList.add('calc-button');
+    calcButton.classList.add('mapbox-valhalla-control-button');
     calcButton.addEventListener('click', () => {
       const lon: HTMLInputElement = <HTMLInputElement>document.getElementById('mapbox-gl-valhalla-lon-time');
       const lat: HTMLInputElement = <HTMLInputElement>document.getElementById('mapbox-gl-valhalla-lat-time');
