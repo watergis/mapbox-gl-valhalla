@@ -34,18 +34,20 @@ map.addControl(new MapboxValhallaControl(
     Contours: [
       {
         time: 3,
+        distance: 1,
         color: 'ff0000',
       },
       {
         time: 5,
+        distance: 2,
         color: 'ffff00',
       },
       {
         time: 10,
+        distance: 3,
         color: '0000ff',
       },
-    ],
-    Crosshair: true
+    ]
   }
 ), 'top-right');
 ```
@@ -63,22 +65,21 @@ You can specify default option as follows.
 [
   {
     time: 5,
+    distance: 1,
     color: 'ff0000',
   },
   {
     time: 10,
+    distance: 2,
     color: 'ffff00',
   },
   {
     time: 15,
+    distance: 3,
     color: '0000ff',
   },
 ]
 ```
-- Crosshair
-  - Display crosshair on the map. it helps to adjust the map center before printing.
-  - accepts `true` and `false` value
-  - default is `true`
 
 ## Development:
 

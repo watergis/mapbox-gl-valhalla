@@ -18,8 +18,8 @@ export const ContourType = {
 type ContourType = typeof ContourType[keyof typeof ContourType];
 
 export type Contour = {
-  time: Number,
-  // distance?: Number,
+  time?: Number,
+  distance?: Number,
   color: String,
 }
 
@@ -37,17 +37,17 @@ export default class Valhalla {
   private contours: Contour[] = [
     {
       time: 5,
-      // distance: 1,
+      distance: 1,
       color: 'ff0000',
     },
     {
       time: 10,
-      // distance: 3,
+      distance: 3,
       color: 'ffff00',
     },
     {
       time: 15,
-      // distance: 5,
+      distance: 5,
       color: '0000ff',
     },
   ];
@@ -67,8 +67,8 @@ export default class Valhalla {
   getIsochrone(
     lon: number,
     lat: number,
-    costing: string,
     contourType: string,
+    costing?: string,
   ) : Promise<string | undefined> {
     if (this.contourLayers.length > 0) {
       this.contourLayers.forEach((id) => {
