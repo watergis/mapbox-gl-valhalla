@@ -61,8 +61,6 @@ export default class CrosshairManager {
         this.xLine.setAttribute('y1', `${halfHeight}px`);
         this.xLine.setAttribute('x2', `${this.width}px`);
         this.xLine.setAttribute('y2', `${halfHeight}px`);
-      } else {
-        console.error('element value is null');
       }
     }
 
