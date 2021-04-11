@@ -22,7 +22,7 @@ jobs:
       uses: actions/setup-node@v1
       with:
         node-version: 12.x
-    - run: npm ci
+    - run: yarn
       env:
         NODE_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
     - name: configure git, build and deploy
@@ -31,10 +31,10 @@ jobs:
         VALHALLA_API: ${{secrets.VALHALLA_API}}
       run: |
         echo HOGE=${VALHALLA_API} > .env
-        npm run lint
-        npm run build
+        yarn run lint
+        yarn run build
         git config --global user.name "watergis+githubci"
         git config --global user.email "watergis+githubci@users.noreply.github.com"
         git remote set-url origin https://x-access-token:${NODE_AUTH_TOKEN}@github.com/watergis/mapbox-gl-valhalla.git
-        npm run deploy
+        yarn run deploy
       
