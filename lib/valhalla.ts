@@ -108,6 +108,7 @@ export default class Valhalla {
         locations: [{ lat, lon }],
         costing,
         contours: contourList,
+        polygons: true,
       };
       const url = `${this.url}/isochrone?json=${JSON.stringify(jsonOption)}`;
       axios.get(url).then((res) => {
@@ -115,8 +116,6 @@ export default class Valhalla {
 
         geojson.features.forEach((f) => {
           const sourceName = `isochrone-${f.properties.contour}`;
-          f.geometry.type = 'Polygon';
-          f.geometry.coordinates = [f.geometry.coordinates];
           this.map?.addSource(sourceName, {
             type: 'geojson',
             data: f,
