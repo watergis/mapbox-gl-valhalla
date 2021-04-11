@@ -1,5 +1,5 @@
 {
-  "name": "mapbox-gl-valhalla",
+  "name": "@watergis/mapbox-gl-valhalla",
   "version": "0.0.1",
   "description": "This module adds a control which can integrate with valhalla api.",
   "main": "dist/index.js",
