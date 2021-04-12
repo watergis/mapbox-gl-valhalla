@@ -58,6 +58,13 @@ export default class DistanceIsochroneControl {
       table.appendChild(tr2);
     }
 
+    const contoursOption = this.valhalla.getContoursOption();
+    for (let i = 0; i < contoursOption.length; i += 1) {
+      const contour = contoursOption[i];
+      const trN = createTextbox(`Contour ${i + 1} (km)`, `contour-distance-${i}`, contour.distance, false, 'number');
+      table.appendChild(trN);
+    }
+
     const clearButton = document.createElement('button');
     clearButton.textContent = 'Clear';
     clearButton.classList.add('mapbox-valhalla-control-button');
@@ -73,11 +80,19 @@ export default class DistanceIsochroneControl {
       const lon: HTMLInputElement = <HTMLInputElement>document.getElementById('mapbox-gl-valhalla-lon-distance');
       const lat: HTMLInputElement = <HTMLInputElement>document.getElementById('mapbox-gl-valhalla-lat-distance');
 
+      const options = this.valhalla.getContoursOption();
+      for (let i = 0; i < options.length; i += 1) {
+        const contour = options[i];
+        const contourText: HTMLInputElement = <HTMLInputElement>document.getElementById(`mapbox-gl-valhalla-contour-distance-${i}`);
+        contour.distance = Number(contourText.value);
+      }
+
       this.valhalla.getIsochrone(
         Number(lon.value),
         Number(lat.value),
         ContourType.Distance,
         Costing.Walking,
+        options,
       );
     });
     this.mainContainer.appendChild(calcButton);

@@ -37,13 +37,18 @@ export const createTextbox = (
   type:string,
   defaultValue: any,
   readOnly: boolean,
+  controlType?: string,
 ): HTMLElement => {
   const label = document.createElement('label');
   label.textContent = title;
 
+  if (!controlType) {
+    controlType = 'text';
+  }
+
   const content = document.createElement('input');
   content.setAttribute('id', `mapbox-gl-valhalla-${type}`);
-  content.setAttribute('type', 'text');
+  content.setAttribute('type', controlType);
   content.setAttribute('value', defaultValue);
   content.readOnly = readOnly;
 
