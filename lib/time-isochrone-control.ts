@@ -63,6 +63,13 @@ export default class TimeIsochroneControl {
       table.appendChild(tr3);
     }
 
+    const contoursOption = this.valhalla.getContoursOption();
+    for (let i = 0; i < contoursOption.length; i += 1) {
+      const contour = contoursOption[i];
+      const trN = createTextbox(`Contour ${i + 1} (min)`, `contour-time-${i}`, contour.time, false, 'number');
+      table.appendChild(trN);
+    }
+
     const clearButton = document.createElement('button');
     clearButton.textContent = 'Clear';
     clearButton.classList.add('mapbox-valhalla-control-button');
@@ -79,11 +86,19 @@ export default class TimeIsochroneControl {
       const lat: HTMLInputElement = <HTMLInputElement>document.getElementById('mapbox-gl-valhalla-lat-time');
       const costing: HTMLSelectElement = <HTMLSelectElement>document.getElementById('mapbox-gl-valhalla-costing');
 
+      const options = this.valhalla.getContoursOption();
+      for (let i = 0; i < options.length; i += 1) {
+        const contour = options[i];
+        const contourText: HTMLInputElement = <HTMLInputElement>document.getElementById(`mapbox-gl-valhalla-contour-time-${i}`);
+        contour.time = Number(contourText.value);
+      }
+
       this.valhalla.getIsochrone(
         Number(lon.value),
         Number(lat.value),
         ContourType.Time,
         costing.value,
+        options,
       );
     });
     this.mainContainer.appendChild(calcButton);

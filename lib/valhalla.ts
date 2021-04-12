@@ -88,9 +88,13 @@ export default class Valhalla {
     lat: number,
     contourType: string,
     costing?: string,
+    contours?: Contour[],
   ) : Promise<string | undefined> {
     this.clearFeatures();
-    const contourList = JSON.parse(JSON.stringify(this.contours));
+    let contourList = JSON.parse(JSON.stringify(this.contours));
+    if (contours) {
+      contourList = contours;
+    }
     contourList.forEach((c) => {
       if (contourType === ContourType.Time) {
         delete c.distance;
@@ -178,5 +182,9 @@ export default class Valhalla {
         resolve();
       }).catch((err) => reject(err));
     });
+  }
+
+  public getContoursOption() {
+    return this.contours;
   }
 }
