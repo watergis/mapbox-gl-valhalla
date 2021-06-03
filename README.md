@@ -16,6 +16,8 @@ npm i @watergis/mapbox-gl-valhalla --save
 
 ## Demo:
 
+See [codesandbox](https://codesandbox.io/s/mapbox-gl-valhalla-nxmiw).
+
 See [demo](https://watergis.github.io/mapbox-gl-valhalla/#12/-1.08551/35.87063).
 
 ![demo.gif](./demo.gif)

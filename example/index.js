@@ -33,8 +33,7 @@ import '../css/styles.css';
             distance: 3,
             color: '0000ff',
           },
-        ],
-        Crosshair: true
+        ]
       }
     ), 'top-right');
 })()
